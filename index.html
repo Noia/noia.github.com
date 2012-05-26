@@ -80,13 +80,7 @@
               <li class="nav-header">Sidebar</li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
               <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
             </ul>
           </div><!--/.well -->
@@ -97,14 +91,28 @@
             <p>My name is Emily and this is a website!</p>
             <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
           </div>
-
+		  <div class="spinner" id="repoload">
+			Loading repositories...
+		  </div>
         </div><!--/span-->
       </div><!--/row-->
-
+	  <div class="span9" id="contact">
+	  	<div class="hero-unit">
+	  		<h1>Contact</h1>
+			<dl>
+				<dt>Email</dt>
+				<dd><a target="_blank" href="http://www.google.com/recaptcha/mailhide/d?k=01UWVVaZtgSh697s5fhaVtZA==&c=DbbZSa3T5fA5yyo-RpJX-">Are you human?</a></dd>
+				<dt>Twitter</dt>
+				<dd><a target="_blank" href="https://twitter.com/#!/Noia">@Noia</a></dd>
+				<dt>G+</dt>
+				<dd><a target="_blank" href="https://plus.google.com/115452074099217285141/posts">Clicky!</a></dd>
+				</dl>
+	  	</div>
+	  </div>
       <hr>
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Derp 2012</p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -130,6 +138,7 @@
 	function createRow(row) {
 		var ret = '<div class="row-fluid">';
 		$.each(row,function(index,value){
+			console.log(value);
 			ret += '<div class="span4">';
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>'
@@ -146,6 +155,7 @@
 			$.each(bins,function(index, value) {
 				s += createRow(value);
 			});
+			$('#repoload').hide();
 			$('.supercontainer').append(s);
 		});
 	});
