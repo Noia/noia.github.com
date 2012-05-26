@@ -104,14 +104,10 @@
 		<div class="span9 offset3" id="contact">
 	  	 	<div class="hero-unit">
 		  		<h1>Contact</h1>
-				<ul>
-					
-					<li><a target="_blank" class="btn btn-primary btn-large" href="http://www.google.com/recaptcha/mailhide/d?k=01UWVVaZtgSh697s5fhaVtZA==&amp;c=DbbZSa3T5fA5yyo-RpJX-">Email</a></li>
-					
-					<li><a target="_blank" class="btn btn-primary btn-large" href="https://twitter.com/#!/Noia">@Noia</a></li>
-					<li><a target="_blank" class="btn btn-primary btn-large" href="https://plus.google.com/115452074099217285141/posts">Google+</a></li>
-					<li><a target="_blank" class="btn btn-primary btn-large" href="https://github.com/Noia">Github</a></li>
-				</ul>
+				<p>Hello fellow human! If you wish to send me an email, you must first prove that you are in fact a real human by <a target="_blank" class="btn btn-secondary" href="http://www.google.com/recaptcha/mailhide/d?k=01UWVVaZtgSh697s5fhaVtZA==&amp;c=DbbZSa3T5fA5yyo-RpJX-">clicking here</a></p>
+					<p>I can also be reached via Twitter as <a target="_blank" class="btn btn-secondary" href="https://twitter.com/#!/Noia">@Noia</a> or on <a target="_blank" class="btn btn-secondary" href="https://plus.google.com/115452074099217285141/posts">Google+</a></p>
+				<p>For an overview of my shenanigans into coding, why not check out my <a target="_blank" class="btn btn-secondary" href="https://github.com/Noia">Github</a>?</p>
+				
 	    	</div>
 	  	</div>
 	
@@ -147,6 +143,8 @@
 			ret += '<div class="span4">';
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>'
+			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a></p>'
+			
 			ret += '</div>';
 		});
 		ret+= '</div>';
