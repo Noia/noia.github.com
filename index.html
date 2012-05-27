@@ -139,7 +139,6 @@
 	function createRow(row) {
 		var ret = '<div class="row-fluid">';
 		$.each(row,function(index,value){
-			console.log(value);
 			ret += '<div class="span4">';
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>'
@@ -154,8 +153,9 @@
 		$.getJSON('https://api.github.com/users/Noia/repos?callback=?',function (repos){
 			var bins =[];
 			$.each(repos.data,new function(index,part){
+				console.log(value);
 				part.updated_at = new Date(part.updated_at);
-			});
+			}); // Predefine data objects
 			repos.data.sort(new function(a,b){
 				if (a.updated_at>b.updated_at)
 					return 1;
