@@ -153,8 +153,8 @@
 		$.getJSON('https://api.github.com/users/Noia/repos?callback=?',function (repos){
 			var bins =[];
 			console.log(repos.data);
-			$.each(repos.data,new function(index,part){
-				part.updated_at = new Date(part.updated_at);
+			$.each(repos.data,new function(index,value){
+				console.log(value.updated_at)
 			}); // Predefine data objects
 			repos.data.sort(new function(a,b){
 				if (a.updated_at>b.updated_at)
