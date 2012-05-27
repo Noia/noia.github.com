@@ -140,10 +140,10 @@
 	function createRow(row) {
 		var ret = '<div class="row-fluid">';
 		$.each(row,function(index,value){
-			ret += '<div class="span4">';
+			ret += '<div class="span4 well">';
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>';
-			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a> Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>';
+			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a><br /> Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>';
 			
 			ret += '</div>';
 		});
@@ -158,11 +158,7 @@
 				value.updated_at_obj = new Date(value.updated_at);
 			}); // Predefine data objects
 			repos.data.sort(function(a,b){
-				if (a.updated_at_obj>b.updated_at_obj)
-					return 1;
-				if (a.updated_at_obj<b.updated_at_obj)
-					return -1;
-				return 0;
+				return a.updated_at_obj-b.updated_at_obj;
 			});
 			repos.data.reverse();
 			while(repos.data.length) bins.push(repos.data.splice(0,3))
