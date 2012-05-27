@@ -163,6 +163,7 @@
 					return -1;
 				return 0;
 			});
+			repos.reverse();
 			while(repos.data.length) bins.push(repos.data.splice(0,3))
 			var s = "";
 			$.each(bins,function(index, value) {
