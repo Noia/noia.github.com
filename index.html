@@ -142,7 +142,7 @@
 			ret += '<div class="span4">';
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>'
-			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a> Last updated: '+value.updated_at+'</p>'
+			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a> Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>'
 			
 			ret += '</div>';
 		});
@@ -154,12 +154,12 @@
 			var bins =[];
 			//console.log(repos.data);
 			$.each(repos.data,function(index, value){
-				value.updated_at = new Date(value.updated_at);
+				value.updated_at_obj = new Date(value.updated_at);
 			}); // Predefine data objects
 			repos.data.sort(function(a,b){
-				if (a.updated_at>b.updated_at)
+				if (a.updated_at_obj>b.updated_at_obj)
 					return 1;
-				if (a.updated_at<b.updated_at)
+				if (a.updated_at_obj<b.updated_at_obj)
 					return -1;
 				return 0;
 			});
