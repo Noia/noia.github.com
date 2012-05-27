@@ -154,7 +154,7 @@
 		$.getJSON('https://api.github.com/users/Noia/repos?callback=?',function (repos){
 			var bins =[];
 			$.each(repos.data,new function(index,part){
-				part.updated_at = new Data(part.updated_at);
+				part.updated_at = new Date(part.updated_at);
 			});
 			repos.data.sort(new function(a,b){
 				if (a.updated_at>b.updated_at)
