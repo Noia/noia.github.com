@@ -45,17 +45,6 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">OHAI!</a>
-          <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> Username
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Sign Out</a></li>
-            </ul>
-          </div>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -143,7 +132,7 @@
 			ret += '<div class="span4 well">';
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>';
-			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a><br /> Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>';
+			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a><br />Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>';
 			
 			ret += '</div>';
 		});
