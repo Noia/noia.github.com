@@ -134,6 +134,7 @@
     <script src="/assets/js/bootstrap-collapse.js"></script>
     <script src="/assets/js/bootstrap-carousel.js"></script>
     <script src="/assets/js/bootstrap-typeahead.js"></script>
+    <script src="/assets/js/jquery.timeago.js"></script>
 
 	<script>
 	function createRow(row) {
@@ -141,8 +142,8 @@
 		$.each(row,function(index,value){
 			ret += '<div class="span4">';
 			ret += '<h2>'+value.name+'</h2>';
-			ret += '<p>'+value.description+'</p>'
-			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a> Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>'
+			ret += '<p>'+value.description+'</p>';
+			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a> Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>';
 			
 			ret += '</div>';
 		});
@@ -171,6 +172,7 @@
 			});
 			$('#repoload').hide();
 			$('.supercontainer').append(s);
+			$('time.timeago').timeago();
 		});
 	});
 	</script>
