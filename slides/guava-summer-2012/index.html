@@ -158,7 +158,7 @@ public void drive(double speed) {
 					</section>
 					<section>
     					<h2>More FP</h2>
-    					<pre><code>
+    					<pre><code contenteditable="true" lang="Java" class="language-java">
 public Iterable<User> findNewFriends() {
     User us = getUser();
     Set<User> ourFriends = us.friends;
@@ -204,16 +204,13 @@ class User {
 					       Guava has many truly Immutable collections<br />
 					       These are often faster and more efficient than typical collections and JDK alternatives.
 					   </p>
-				
-					   <pre>
-					   <code contenteditable="true" lang="Java" class="language-java">
+					   <pre><code contenteditable="true" lang="Java" class="language-java">
 public ImmutableList<Stuff> getStuff() {
     Builder<Stuff> builder = ImmutableList.builder();
     ImmutableList<Stuff> list = builder.add(stuff).add(otherStuff).add(someMoreStuff).build();
     return list;
 }
-					   </code>
-					   </pre>
+					   </code></pre>
 					</section>
 					<section>
     					<h2>Using lists with ease</h2>
