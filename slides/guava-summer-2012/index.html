@@ -154,7 +154,42 @@ public void drive(double speed) {
 						<h2>Optional</h2>
 					</section>
 					<section>
-						<h2></h2>
+						<h2>Functional Paradigms!</h2>
+					</section>
+					<section>
+    					<h2>More FP</h2>
+    					<pre><code>
+public Iterable<User> findNewFriends() {
+    User us = getUser();
+    Set<User> ourFriends = us.friends;
+
+    // Find our friends of friends, collapse to a set, remove friends we already have.    
+    Predicate<User> potentialNewFriend = and(not(in(ourFriends)),not(equalsTo(us)));
+    FluentIterable<User> extendedNetwork = from(newHashSet(from(ourFriends).transformAndConcat(User.FriendsAccessor.instance)));
+    
+    // Remove friends we already have an ourselves.
+    extendedNetwork = extendedNetwork.filter(potentialNewFriend);
+    return extendedNetwork;
+}
+
+class User {
+	Set<User> friends;
+	
+	enum FriendsAccessor implements Function<User,Iterable<User>> {
+		instance;
+		@Override
+		public Iterable<User> apply(User input) {
+			return input.friends;
+		}
+	}
+	
+}
+// import static com.google.common.collect.Sets.*
+// import static com.google.common.base.Predicates.*
+// import static com.google.common.collect.FluentIterable.*		
+        					
+
+    					</code></pre>
 					</section>
 				</section>
 
@@ -172,20 +207,49 @@ public void drive(double speed) {
 				
 					   <pre>
 					   <code contenteditable="true" lang="Java" class="language-java">
-Builder<Stuff> builder = ImmutableList.builder();
-ImmutableList<Stuff> list = builder.add(stuff).add(otherStuff).add(someMoreStuff).build();
+public ImmutableList<Stuff> getStuff() {
+    Builder<Stuff> builder = ImmutableList.builder();
+    ImmutableList<Stuff> list = builder.add(stuff).add(otherStuff).add(someMoreStuff).build();
+    return list;
+}
 					   </code>
 					   </pre>
 					</section>
 					<section>
     					<h2>Using lists with ease</h2>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
-List<Stuff> stuff = Lists.newArrayList();
-stuff = Lists.newArrayList(myStuff,yourStuff,theirStuff);
+public List<Stuff> getStuff() {
+    List<Stuff> stuff = Lists.newArrayList();
+    stuff = Lists.newArrayList(myStuff,yourStuff,theirStuff);
+}
+    					</code></pre>
+					</section>
+					<section>
+    					<h2>Complex collections</h2>
+    					<h3> Tables!</h3>
+    					<p><i><small>NOT a Map&lt;R,Map&lt;C,V&gt;&gt; but very similar.</small></i></p>
+    					<pre><code contenteditable="true" lang="Java" class="language-java">
+public void process() {
+
+   Table<User,Field,Data> table = getUserTable();
+
+   Table<Field,User,Data> transposed = Tables.transpose(table);
+
+   Map<User,Data> names = transposed.row(Field.first_name);
+   
+}
+//////
+enum Field {
+    id,first_name,last_name,dob
+}
+
+abstract class Data<T> implements Supplier<T> {
+    final T data;
+    abstract T get();
+}
 
     					</code></pre>
 					</section>
-					<section></section>
 					<section></section>
 					<section></section>
 				</section>
@@ -199,8 +263,37 @@ stuff = Lists.newArrayList(myStuff,yourStuff,theirStuff);
 
 				<section>
 					<section data-state="red">
-						<h1>util.concurrent</h1>
+						<h1>concurrent</h1>
 						<h2><i>Do ALL the things!</i></h2>
+					</section>
+					<section>
+					   <h2>ListenableFuture</h2>
+					   <pre><code contenteditable="true" lang="Java" class="language-java">
+public void doSomethingWithUserasynchronously() {
+    ListeningScheduledExecutorService executor = MoreExecutors
+    				.listeningDecorator(new ScheduledThreadPoolExecutor(4));
+    
+    ListenableFuture<User> task = executor.submit(new Callable<User>() {
+    	@Override
+    	public User call() throws Exception {
+    		return new User();
+    	}
+    });
+    
+    Futures.addCallback(task, new FutureCallback<User>() {
+    	@Override
+    	public void onFailure(Throwable t) {
+    		// log exception?
+    		Throwables.propagate(t);
+    	}
+    
+    	@Override
+    	public void onSuccess(User result) {
+    		// Do something with user.
+    	}
+    });
+}
+					   </code></pre>
 					</section>
 				</section>
 				
