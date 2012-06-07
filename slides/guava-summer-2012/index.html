@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>reveal.js</title>
+		<title>Guava - Summer 2012</title>
 
-		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="A brief look at Google Guava">
+		<meta name="author" content="Emily Soldal">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -30,91 +30,70 @@
 			
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+				
 				<section>
-					<h1>Reveal.js</h1>
-					<h3 class="inverted">CSS 3D Presentations</h3>
+					<h1>Guava</h1>
+					<h3 class="inverted">A quick look at Google Guava (r12++).</h3>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
-				</section>
-				
-				<section>
-					<h2>Guava</h2>
-					<p>
-						A quick look at Google Guava (r12++).
-					</p>
 					<p>
 						<i><small>- <a href="http://noia.github.com">Emily Soldal</a> / <a href="http://twitter.com/Noia">@noia</a> / <a href="https://plus.google.com/115452074099217285141/">G+</a></small></i>
+					</p>
+					<p>
+						<i>Press <strong>ESC</strong> to enter the slide overview!</i>
 					</p>
 				</section>
 				
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
+						<h2>History</h2>
 						<p>
-							Slides can be nested inside of other slides,<br/>
-							try pressing <a href="#/2/1">down</a>.
+							Started as Google Collections.<br /><br />
+							Is the <em>Creme de la Creme</em> of Googles internal libraries!
 						</p>
-						<a href="#/2/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						</a>
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
+						<h2>Battle ready library</h2>
+						<p>
+							Guava is used by millions of users and has an incredibly low use-fault ratio!<br /><br />
+							Very activly developed with a focus on usability and performance.
+						</p>
 					</section>
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif">
-						</a>
+						<h2>Licencing</h2>
+						<p>
+							<a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0!</a><br />
+							<i><small>why aren't you using this already?!</small></i>
+						</p>
 					</section>
 					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" style="-webkit-transform: rotate(180deg);">
-						</a>
+						<h2>Restrictions</h2>
+						<p>
+							As of r12...<br />
+							<ul>
+								<li>Requires Java 1.6<br />
+									<i><small>versions &lt;r12 support 1.5</small></i>
+								</li>
+								<li>Requires Android - Gingerbread<br />
+									<i><small>Gingerbread is already 16 months old!</small></i>
+								</li>
+							</ul>
+						</p>
+						<p><small>When you see r12, think Guava 12.0</small><p>
 					</section>
+					
 				</section>
 
 				<section>
-					<h2>Holistic Overview</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview!
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like:
-					</p>
+					<h2>More than meets the eye!</h2>
 					<ul>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
-						<li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
+						<li>Collections / <em>com.google.</em></li>
+						<li>Concurrent frameworks</li>
+						<li>Caching</li>
+						<li>Functional paradigsm</li>
 					</ul>
 				</section>
 				
@@ -261,7 +240,6 @@ linkify( 'a' );
 		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
 		<script src="lib/highlight.js"></script>
 		<script src="lib/classList.js"></script>
-		
 		<script src="js/reveal.js"></script>
 		
 		<script>
@@ -271,10 +249,11 @@ linkify( 'a' );
 				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
 			} );
 
+			
 			// Fires when a slide with data-state=customevent is activated
-			Reveal.addEventListener( 'customevent', function() {
-				alert( '"customevent" has fired' );
-			} );
+			//Reveal.addEventListener( 'customevent', function() {
+			//	alert( '"customevent" has fired' );
+			//} );
 
 			// Fires each time a new slide is activated
 			Reveal.addEventListener( 'slidechanged', function( event ) {
@@ -306,9 +285,22 @@ linkify( 'a' );
 				// Transition style
 				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
 			});
-
+			hljs.tabReplace = '<span class="indent">\t</span>';
 			hljs.initHighlightingOnLoad();
 		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript">
 
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-32481658-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
 	</body>
 </html>
