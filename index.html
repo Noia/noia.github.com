@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,16 +60,11 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
+              <li class="nav-header">Slides</li>
+              <li><a href="#">Guava Slides - Summer 2012</a></li>
+              <li class="nav-header">Things I like</li>
+              <li><a href="#">...</a></li>
+              <li><a href="#">...</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -133,8 +127,8 @@
 			ret += '<h2>'+value.name+'</h2>';
 			ret += '<p>'+value.description+'</p>';
 			ret += '<p><a class="btn btn-secondary" href="'+value.html_url+'">Github</a><br />Last updated: <time class="timeago" datetime="'+value.updated_at+'">'+value.updated_at_obj+'</time></p>';
-			
 			ret += '</div>';
+			console.log(value);
 		});
 		ret+= '</div>';
 		return ret;
