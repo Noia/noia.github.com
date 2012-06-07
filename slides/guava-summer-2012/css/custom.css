@@ -33,3 +33,75 @@
 .green .state-background {
 	background: rgba( 6, 153, 36, 0.8 );
 }
+
+
+/* stuff... */
+#stage {
+	height:600px;
+	width:1000px;
+	overflow:hidden;
+	margin: 0 auto;
+	-webkit-perspective:800;
+	-webkit-perspective-origin:center 300px;
+	line-height:0;
+}
+
+#far-far-away {
+	color:rgb(75,213,238);
+	font-size:48px;
+	line-height:1.5;
+	position:absolute;
+	top:200px;
+	left:190px;
+	opacity:0;
+	-webkit-animation:fade-in-out 6s linear;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-delay:5s;
+}
+
+@-webkit-keyframes fade-in-out {
+	0% { opacity:0; }
+	16%   { opacity:1; }
+	84%   { opacity:1; }
+	100%   { opacity:0; }
+}
+@-webkit-keyframes logo {
+	0% { -webkit-transform: translateZ(0); opacity:1;}
+	50% { -webkit-transform: translateZ(-50000px); opacity:1; }
+	60% { -webkit-transform: translateZ(-60000px); opacity:0; }
+	100%   { -webkit-transform: translateZ(-100000px); opacity:0;}
+}
+@-webkit-keyframes crawl {
+	0% { -webkit-transform:rotateX(80deg) translateZ(200px) translateY(1100px);opacity:1;}
+	40% { -webkit-transform:rotateX(80deg) translateZ(200px) translateY(-340px);opacity:1;}
+	80% { -webkit-transform:rotateX(80deg) translateZ(200px) translateY(-1780px);opacity:0;}
+	100% { -webkit-transform:rotateX(80deg) translateZ(200px) translateY(-2500px);opacity:0;}
+}
+
+
+#crawl {
+	color:rgb(252,223,43);
+	text-align:center;
+	font-size:36px;
+	opacity:0;
+	-webkit-animation:crawl 120s linear;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-delay:10s;
+	-webkit-transform-style:preserve-3d;
+	position: absolute;
+	bottom: 0px;
+	margin: auto;
+	height: 0px;
+}
+
+#crawl p.title {
+	font-family:"FranklinGothicMediumCondRegul", sans-serif;
+	text-transform:uppercase;
+	font-size:96px;
+	-webkit-transform:scaleX(0.6);
+}
+
+#crawl p {
+	white-space:pre;
+	margin-bottom:0;
+}
