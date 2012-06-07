@@ -18,3 +18,18 @@
   margin: 0px 7px;
   font-size: 13px;
 }
+
+
+/* Google colours */
+.red .state-background {
+	background: rgba( 245, 0, 23, 0.8 );
+}
+.yellow .state-background {
+	background: rgba( 255, 134, 8, 0.8 );
+}
+.blue .state-background {
+	background: rgba( 0, 86, 251, 0.8 );
+}
+.green .state-background {
+	background: rgba( 6, 153, 36, 0.8 );
+}
