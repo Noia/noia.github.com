@@ -134,6 +134,16 @@
 					</section>
 					<section>
 						<h2>Preconditions!</h2>
+						<pre><code>
+public Car(Engine engine) {
+	this.engine = checkNotNull(engine); // NPE
+}
+public void drive(double speed) {
+	checkArgument(speed > 0.0, "speed (%s) must be positive", speed); // IAE
+	checkState(engine.isRunning(), "engine must be running"); // ISE
+	...
+}
+						</code></pre>
 					</section>
 					<section>
 						<h2>Strings stringly strings</h2>
@@ -155,6 +165,28 @@
 					</section>
 				</section>
 
+				<section>
+					<section data-state="blue">
+						<h1>com.google.common.collect</h1>
+						<h2><i>Lists, Maps, Sets and other collections</i></h2>
+					</section>
+				</section>
+				
+				<section>
+					<section data-state="green">
+						<h1>com.google.common.io</h1>
+						<h2><i>Real world things</i></h2>
+					</section>
+				</section>
+
+				<section>
+					<section data-state="red">
+						<h1>com.google.common.base</h1>
+						<h2><i>"Useful" things</i></h2>
+					</section>
+				</section>
+				
+				<!--
 				<section>
 					<section data-state="alert">
 						<h2>Global State</h2>
@@ -266,10 +298,10 @@ linkify( 'a' );
 						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
 					</ul>
 				</section>
-				
+				-->
 				<section>
 					<h1>THE END</h1>
-					<h3 class="inverted">BY Hakim El Hattab / hakim.se</h3>
+					<h3 class="inverted">BY Emily Soldal</h3>
 				</section>
 			</div>
 
