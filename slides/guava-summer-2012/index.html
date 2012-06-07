@@ -163,7 +163,28 @@ public void drive(double speed) {
 						<h1>collect</h1>
 						<h2><i>Lists, Maps, Sets and other collections</i></h2>
 					</section>
-					<section></section>
+					<section>
+					   <h2>Immutable types</h2>
+					   <p>
+					       Guava has many truly Immutable collections<br />
+					       These are often faster and more efficient than typical collections and JDK alternatives.
+					   </p>
+				
+					   <pre>
+					   <code contenteditable="true" lang="Java" class="language-java">
+Builder<Stuff> builder = ImmutableList.builder();
+ImmutableList<Stuff> list = builder.add(stuff).add(otherStuff).add(someMoreStuff).build();
+					   </code>
+					   </pre>
+					</section>
+					<section>
+    					<h2>Using lists with ease</h2>
+    					<pre><code contenteditable="true" lang="Java" class="language-java">
+List<Stuff> stuff = Lists.newArrayList();
+stuff = Lists.newArrayList(myStuff,yourStuff,theirStuff);
+
+    					</code></pre>
+					</section>
 					<section></section>
 					<section></section>
 					<section></section>
