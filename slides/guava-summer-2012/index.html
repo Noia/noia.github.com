@@ -1,4 +1,4 @@
-<!doctype html>  
+﻿<!doctype html>  
 <html lang="en">
 	
 	<head>
@@ -16,8 +16,8 @@
 		
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/custom.css">
 		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
-
 		<link rel="stylesheet" href="lib/zenburn.css">
 	</head>
 	
@@ -41,12 +41,12 @@
 					<p>
 						<i><small>- <a href="http://noia.github.com">Emily Soldal</a> / <a href="http://twitter.com/Noia">@noia</a> / <a href="https://plus.google.com/115452074099217285141/">G+</a></small></i>
 					</p>
-					<p>
-						<i>Press <strong>ESC</strong> to enter the slide overview!</i>
-					</p>
+					
+					<p><small>You can navigate with <span class="key">→</span>, <span class="key">↓</span> or <span class="key">space</span>.</small>
+					<p><small> Also <span class="key">esc</span> gives an exposé mode (that might be quite slow).</small>
+					
 				</section>
 				
-				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
 						<h2>History</h2>
@@ -80,20 +80,39 @@
 								<li>Requires Android - Gingerbread<br />
 									<i><small>Gingerbread is already 16 months old!</small></i>
 								</li>
+								<li>Some classes are marked as @Beta<br />
+									<i><small>This usually means they are might change their idea about the class API; NOT that it is unstable.</small></i>
+								</li>
 							</ul>
 						</p>
 						<p><small>When you see r12, think Guava 12.0</small><p>
 					</section>
-					
+					<section>
+						<h2>Philosophy</h2>
+						<p><img width="400" height="400" src="img/philosoraptor.jpg" alt="IF YOU DELETE A RUBBISH CLASS / IS IT GARBAGE COLLECTED?" /></p>
+					</section>
+					<section>
+						<h2>Philosophy</h2>
+						<p>
+							<ul>
+								<li class="fragment">Ubiquity<small>*</small> x Utility<br />
+									<i><small>*: how hard it would be to do on your own.</small></i>
+								</li>
+								<li class="fragment">Something</li>
+								<li class="fragment">Something else</li>
+							</ul>
+						</p>
+					</section>
 				</section>
 
 				<section>
 					<h2>More than meets the eye!</h2>
 					<ul>
-						<li>Collections / <em>com.google.</em></li>
-						<li>Concurrent frameworks</li>
-						<li>Caching</li>
-						<li>Functional paradigsm</li>
+						<li>Collections<br /><small>com.google.common.collect</small></li>
+						<li>Concurrent<br /><small>com.google.common.util.concurrent</small></li>
+						<li>Caching<br /><small>com.google.common.cache</small></li>
+						<li>Functional paradigms<br /><small>com.google.common.base</small></li>
+						<li>I/O<br /><small>com.google.common.io</small></li>
 					</ul>
 				</section>
 				
