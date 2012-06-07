@@ -8,10 +8,9 @@
 
 		<meta name="description" content="A brief look at Google Guava">
 		<meta name="author" content="Emily Soldal">
-
+		
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 		
 		<link rel="stylesheet" href="css/reset.css">
@@ -28,7 +27,6 @@
 			<!-- Used to fade in a background when a specific slide state is reached -->
 			<div class="state-background"></div>
 			
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				
 				<section>
@@ -38,13 +36,13 @@
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
-					<p>
-						<i><small>- <a href="http://noia.github.com">Emily Soldal</a> / <a href="http://twitter.com/Noia">@noia</a> / <a href="https://plus.google.com/115452074099217285141/">G+</a></small></i>
-					</p>
 					
 					<p><small>You can navigate with <span class="key">→</span>, <span class="key">↓</span> or <span class="key">space</span>.</small>
 					<p><small> Also <span class="key">esc</span> gives an exposé mode (that might be quite slow).</small>
 					
+					<p>
+						<i><small>- <a href="http://noia.github.com" rel="author">Emily Soldal</a> / <a href="http://twitter.com/Noia" rel="author">@noia</a> / <a href="http://goo.gl/uJklf" rel="author">G+</a></small></i>
+					</p>
 				</section>
 				
 				<section>
@@ -98,7 +96,7 @@
 								<li class="fragment">Ubiquity<small>*</small> x Utility<br />
 									<i><small>*: how hard it would be to do on your own.</small></i>
 								</li>
-								<li class="fragment">Resist change without review<br />
+								<li class="fragment">Resist change without (LOTS OF) review<br />
 									<i><small>&lt;<a href="https://plus.google.com/113026104107031516488/posts/ZRdtjTL1MpM">a rant on patches by Kevin Bourrillion</a>&gt;</small></i>
 								</li>
 								<li class="fragment">Something else</li>
@@ -121,22 +119,13 @@
 				</section>
 				
 				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-				
-				<section>
 					<section data-state="yellow">
-						<h1>com.google.common.base</h1>
+						<h1>base</h1>
 						<h2><i>"Useful" things</i></h2>
 					</section>
 					<section>
 						<h2>Preconditions!</h2>
-						<pre><code>
+						<pre><code contenteditable="true" lang="java" class="language-java">
 // import static com.google.common.base.Preconditions.*						
 public Car(Engine engine) {
 	this.engine = checkNotNull(engine); // NPE
@@ -150,6 +139,7 @@ public void drive(double speed) {
 					</section>
 					<section>
 						<h2>Strings stringly strings</h2>
+						
 					</section>
 					<section>
 						<h2>Splitter!</h2>
@@ -170,22 +160,26 @@ public void drive(double speed) {
 
 				<section>
 					<section data-state="blue">
-						<h1>com.google.common.collect</h1>
+						<h1>collect</h1>
 						<h2><i>Lists, Maps, Sets and other collections</i></h2>
 					</section>
+					<section></section>
+					<section></section>
+					<section></section>
+					<section></section>
 				</section>
 				
 				<section>
 					<section data-state="green">
-						<h1>com.google.common.io</h1>
+						<h1>io</h1>
 						<h2><i>Real world things</i></h2>
 					</section>
 				</section>
 
 				<section>
 					<section data-state="red">
-						<h1>com.google.common.base</h1>
-						<h2><i>"Useful" things</i></h2>
+						<h1>util.concurrent</h1>
+						<h2><i>Do ALL the things!</i></h2>
 					</section>
 				</section>
 				
@@ -309,33 +303,6 @@ linkify( 'a' );
 							<h1>THE END</h1>
 							<h3 class="inverted">BY Emily Soldal</h3>
 						</div>
-						<div id="crawl">
-								<p class="episode">Episode IV</p>
-								<p class="title">A New Hope</p>
-<p>It   is   a   period   of   civil   war.
-Rebel     spaceships,     striking
-from  a hidden base,  have won
-their    first     victory     against
-the     evil     Galactic     Empire.</p>
-
-<p>During     the     battle,    Rebel
-spies managed to steal secret
-plans      to      the       Empire&#8217;s
-ultimate  weapon,   the DEATH
-STAR,     an    armored    space
-station    with   enough  power
-to destroy an entire planet.     </p>
- 
-<p>Pursued    by     the     Empire&#8217;s
-sinister      agents,      Princess
-Leia  races  home  aboard  her
-starship,    custodian    of    the
-stolen plans that can save her
-people           and           restore
-freedom   to    the    galaxy. . . .</p>
-							</div>
-
-					
 					</div>
 				</section>
 			</div>
@@ -357,7 +324,7 @@ freedom   to    the    galaxy. . . .</p>
 		<script src="lib/highlight.js"></script>
 		<script src="lib/classList.js"></script>
 		<script src="js/reveal.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script>
 			// Parse the query string into a key/value object
 			var query = {};
@@ -403,8 +370,11 @@ freedom   to    the    galaxy. . . .</p>
 			});
 			hljs.tabReplace = '<span class="indent">\t</span>';
 			hljs.initHighlightingOnLoad();
+			$('code').blur(function (e){
+			 console.log("defocus!",e);
+    			hljs.highlightBlock(e.currentTarget);
+			});
 		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript">
 
 		  var _gaq = _gaq || [];
