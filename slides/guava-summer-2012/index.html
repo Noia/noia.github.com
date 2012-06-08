@@ -143,12 +143,50 @@ public void drive(double speed) {
 					</section>
 					<section>
 						<h2>Splitter!</h2>
+						<p>
+							String splitting is something java is not very good at. 
+						</p>
+						<p>
+							<em><small>What is "frode, gudny, , schea, emily, håvard, rune".split(",")?</small></em>
+						<p>
+						<p class="fragment">
+							<i><small>["frode"," gudny"," "," schea"," emily"," håvard"," rune"]</small></i>
+						</p>
+						<p class="fragment">
+							You probably wanted<br />
+							<i>["frode","gudny","schea","emily","håvard","rune"]</i>
+						</p>
 					</section>
 					<section>
-						<h2>Joiner</h2>
+						<h2>There is a better way!</h2>
+							<pre><code contenteditable="true" lang="Java" class="language-java">
+public void splitStrings() {
+
+	String data = "frode, gudny, , schea, emily, håvard, rune";
+	Iterable<String> splits = Splitter.on(',').trimResults().omitEmptyStrings().split(data);
+
+}
+							</code></pre>
+					</section>
+					<section>
+						<h2>Joiner!</h2>
+						<p>The antithesis of Splitter, bringing the world together one string at a time!</p>
+							<pre><code contenteditable="true" lang="Java" class="language-java">
+public String listUsers(Set&lt;User&gt; users) {
+	// navn1, navn2, navn3							
+	return Joiner.on(" ,").join(Iterables.transform(users,User.NameAccessor.instance);
+
+}
+							</code></pre>
 					</section>
 					<section>
 						<h2>CharMatcher</h2>
+						<pre><code contenteditable="true" lang="Java" class="language-java">
+public String cleanPhoneNumber(String phonenumber) {
+	CharMatcher phonenumbers = CharMatcher.DIGIT.or(CharMatcher.is('-')).or(CharMatcher.is('+');
+	return phonenumbers.retainFrom(phonenumber);
+}
+						</code></pre>
 					</section>
 					<section>
 						<h2>Optional</h2>
@@ -167,7 +205,7 @@ public Iterable<User> findNewFriends() {
     Predicate&lt;User&gt; potentialNewFriend = and(not(in(ourFriends)),not(equalsTo(us)));
     FluentIterable&lt;User&gt; extendedNetwork = from(newHashSet(from(ourFriends).transformAndConcat(User.FriendsAccessor.instance)));
     
-    // Remove friends we already have an ourselves.
+    // Remove friends we already have and ourselves.
     extendedNetwork = extendedNetwork.filter(potentialNewFriend);
     return extendedNetwork;
 }
