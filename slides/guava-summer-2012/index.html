@@ -141,18 +141,6 @@ public void drive(double speed) {
 						</code></pre>
 					</section>
 					<section>
-						<h2>Functions!</h2>
-						<h3 class="inverted">Going from <i>I</i> &nbsp;to&nbsp; <i>O</i> since Guava 1.0!</h3>
-						<pre><code contenteditable="true" lang="java" class="language-java">
-enum UserNameAccessorFunction implements Function<User,Name> {
-	instance;
-	public Name apply(User input) {
-		return input.getName();
-	}
-}
-						</code></pre>
-					</section>
-					<section>
 						<h2>Splitter!</h2>
 						<p>
 							String splitting is something java is not very good at. 
@@ -203,9 +191,7 @@ public String cleanPhoneNumber(String phonenumber) {
 }
 						</code></pre></p>
 						<div class="fragment">
-						<p>
-						Or...
-						
+						<p>Or...
 						<pre><code contenteditable="true" lang="Java" class="language-java">
 private static final CharMatcher phonenumbers;
 static {
@@ -228,6 +214,36 @@ public String cleanPhoneNumber(String phonenumber) {
 					<section>
 						<h2>Functional Paradigms!</h2>
 					</section>
+					<section>
+						<h2>Predicates</h2>
+						<p>A decision on an object, an IF statement by any other name!</p>
+						<pre><code contenteditable="true" lang="java" class="language-java">
+enum IsPast implements Predicate&lt;AbstractInstant&gt; {
+	instance;
+	public boolean apply(AbstractInstant input) {
+		return input.isBeforeNow();
+	}
+}
+public void listFutureEvents() {
+	Iterable&lt;DateTime&gt; events = from(getEvents()).filter(not(IsPast.instance));
+}
+// import static com.google.common.collect.FluentIterable.*;
+// import static com.google.common.base.Predicates.*;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Functions!</h2>
+						<h3 class="inverted">Going from <i>I</i> &nbsp;to&nbsp; <i>O</i>&nbsp; since Guava 1.0!</h3>
+						<pre><code contenteditable="true" lang="java" class="language-java">
+enum UserNameAccessorFunction implements Function&lt;User,Name&gt; {
+	instance;
+	public Name apply(User input) {
+		return input.getName();
+	}
+}
+						</code></pre>
+					</section>
+					
 					<section>
     					<h2>More FP</h2>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
