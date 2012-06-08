@@ -8,6 +8,7 @@
 
 		<meta name="description" content="A brief look at Google Guava">
 		<meta name="author" content="Emily Soldal">
+		<!-- No caching while I dev! -->
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Expires" content="-1">
 
@@ -102,7 +103,6 @@
 								<li class="fragment">Resist change without (LOTS OF) review<br />
 									<i><small>&lt;<a href="https://plus.google.com/113026104107031516488/posts/ZRdtjTL1MpM">a rant on patches by Kevin Bourrillion</a>&gt;</small></i>
 								</li>
-								<li class="fragment">Something else</li>
 							</ul>
 						</p>
 					</section>
@@ -141,8 +141,16 @@ public void drive(double speed) {
 						</code></pre>
 					</section>
 					<section>
-						<h2>String stringly strings</h2>
-						
+						<h2>Functions!</h2>
+						<h3 class="inverted">Going from <i>I</i> &nbsp;to&nbsp; <i>O</i> since Guava 1.0!</h3>
+						<pre><code contenteditable="true" lang="java" class="language-java">
+enum UserNameAccessorFunction implements Function<User,Name> {
+	instance;
+	public Name apply(User input) {
+		return input.getName();
+	}
+}
+						</code></pre>
 					</section>
 					<section>
 						<h2>Splitter!</h2>
@@ -187,13 +195,32 @@ public String listUsers(Set&lt;User&gt; users) {
 						<p>
 							Imperative solution to string handling and data input verification.
 						</p>
-						<pre><code contenteditable="true" lang="Java" class="language-java">
+						<p class="fragment"><pre><code contenteditable="true" lang="Java" class="language-java">
 public String cleanPhoneNumber(String phonenumber) {
 	CharMatcher phonenumbers = CharMatcher.DIGIT; // [\\d]
 	phonenumbers = phonenumbers.or(CharMatcher.is('-')).or(CharMatcher.is('+')); // [+-]
 	return phonenumbers.retainFrom(phonenumber); // String.replaceAll("[^\\d+-]","");
 }
+						</code></pre></p>
+						<div class="fragment">
+						<p>
+						Or...
+						
+						<pre><code contenteditable="true" lang="Java" class="language-java">
+private static final CharMatcher phonenumbers;
+static {
+	CharMatcher tmp = CharMatcher.DIGIT; // [\\d]
+	tmp = tmp.or(CharMatcher.is('-')) // [-]
+	tmp = tmpor(CharMatcher.is('+')); // [+]
+	phonenumber = tmp;
+}						
+
+public String cleanPhoneNumber(String phonenumber) {
+	return phonenumbers.retainFrom(phonenumber); // String.replaceAll("[^\\d+-]","");
+}
 						</code></pre>
+						</p>
+						</div>
 					</section>
 					<section>
 						<h2>Optional</h2>
