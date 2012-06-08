@@ -8,6 +8,9 @@
 
 		<meta name="description" content="A brief look at Google Guava">
 		<meta name="author" content="Emily Soldal">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="-1">
+
 		
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -41,7 +44,7 @@
 					<p><small> Also <span class="key">esc</span> gives an exposé mode (that might be quite slow).</small>
 					
 					<p>
-						<i><small>- <a href="http://noia.github.com" rel="author">Emily Soldal</a> / <a href="http://twitter.com/Noia" rel="author">@noia</a> / <a href="http://goo.gl/uJklf" rel="author">G+</a></small></i>
+						<i><small>- <a href="http://noia.github.com" rel="author">Emily Soldal.git</a> / <a href="http://twitter.com/Noia" rel="author">@Noia</a> / <a href="http://goo.gl/uJklf" rel="author">+Emily Soldal</a></small></i>
 					</p> 
 				</section>
 				
@@ -138,7 +141,7 @@ public void drive(double speed) {
 						</code></pre>
 					</section>
 					<section>
-						<h2>Strings stringly strings</h2>
+						<h2>String stringly strings</h2>
 						
 					</section>
 					<section>
@@ -181,10 +184,14 @@ public String listUsers(Set&lt;User&gt; users) {
 					</section>
 					<section>
 						<h2>CharMatcher</h2>
+						<p>
+							Imperative solution to string handling and data input verification.
+						</p>
 						<pre><code contenteditable="true" lang="Java" class="language-java">
 public String cleanPhoneNumber(String phonenumber) {
-	CharMatcher phonenumbers = CharMatcher.DIGIT.or(CharMatcher.is('-')).or(CharMatcher.is('+');
-	return phonenumbers.retainFrom(phonenumber);
+	CharMatcher phonenumbers = CharMatcher.DIGIT; // [\\d]
+	phonenumbers = phonenumbers.or(CharMatcher.is('-')).or(CharMatcher.is('+')); // [+-]
+	return phonenumbers.retainFrom(phonenumber); // String.replaceAll("[^\\d+-]","");
 }
 						</code></pre>
 					</section>
@@ -447,13 +454,8 @@ linkify( 'a' );
 				</section>
 				-->
 				<section>
-					<div id="stage">
-
-						<div id="far-far-away">
-							<h1>THE END</h1>
-							<h3 class="inverted">BY Emily Soldal</h3>
-						</div>
-					</div>
+					<h1>THE END</h1>
+					<h3 class="inverted">BY Emily Soldal</h3>
 				</section>
 			</div>
 
