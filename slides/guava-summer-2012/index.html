@@ -174,7 +174,6 @@ public void splitStrings() {
 public String listUsers(Set&lt;User&gt; users) {
 	// navn1, navn2, navn3							
 	return Joiner.on(" ,").join(Iterables.transform(users,User.NameAccessor.instance);
-
 }
 							</code></pre>
 					</section>
@@ -183,13 +182,13 @@ public String listUsers(Set&lt;User&gt; users) {
 						<p>
 							Imperative solution to string handling and data input verification.
 						</p>
-						<p class="fragment"><pre><code contenteditable="true" lang="Java" class="language-java">
+						<pre><code contenteditable="true" lang="Java" class="language-java">
 public String cleanPhoneNumber(String phonenumber) {
 	CharMatcher phonenumbers = CharMatcher.DIGIT; // [\\d]
 	phonenumbers = phonenumbers.or(CharMatcher.is('-')).or(CharMatcher.is('+')); // [+-]
 	return phonenumbers.retainFrom(phonenumber); // String.replaceAll("[^\\d+-]","");
 }
-						</code></pre></p>
+						</code></pre>
 						<div class="fragment">
 						<p>Or...
 						<pre><code contenteditable="true" lang="Java" class="language-java">
@@ -210,6 +209,9 @@ public String cleanPhoneNumber(String phonenumber) {
 					</section>
 					<section>
 						<h2>Optional</h2>
+						<p>
+							Nulls should be avoided, infact if it weren't for array deregistration they shouldn't exist.
+						</p>
 					</section>
 					<section>
 						<h2>Functional Paradigms!</h2>
@@ -233,7 +235,7 @@ public void listFutureEvents() {
 					</section>
 					<section>
 						<h2>Functions!</h2>
-						<h3 class="inverted">Going from <i>I</i> &nbsp;to&nbsp; <i>O</i>&nbsp; since Guava 1.0!</h3>
+						<h3 class="inverted">Going from <i>&lt;I&gt;</i> &nbsp;to&nbsp; <i>&lt;O&gt;</i>&nbsp; since Guava 1.0!</h3>
 						<pre><code contenteditable="true" lang="java" class="language-java">
 enum UserNameAccessorFunction implements Function&lt;User,Name&gt; {
 	instance;
@@ -335,14 +337,37 @@ abstract class Data&lt;T&gt; implements Supplier&lt;T&gt; {
 
     					</code></pre>
 					</section>
-					<section></section>
-					<section></section>
 				</section>
 				
 				<section>
 					<section data-state="green">
 						<h1>io</h1>
 						<h2><i>Real world things</i></h2>
+					</section>
+					<section>
+						<h2>Files.class</h2>
+						<p>
+							Files
+						</p>
+						<pre><code contenteditable="true" lang="Java" class="language-java">
+public Multiset<String> countWords(File file) {
+	// Count distinct word occurrences in a file.
+	Multiset<String> wordOccurrences = HashMultiset.create(
+	  Splitter.on(CharMatcher.WHITESPACE)
+		.omitEmptyStrings()
+		.trimResults()
+		.split(Files.toString(file, Charsets.UTF_16)));
+	return wordOccurrences;
+}
+						</code></pre>
+						<pre><code contenteditable="true" lang="Java" class="language-java">
+public byte[] digest(File file) {
+	// SHA-1 a file.
+	byte[] digest = MessageDigest.getInstance("SHA-1").digest(Files.toByteArray(file));
+	return digest;
+}
+						</code></pre>
+						
 					</section>
 				</section>
 
