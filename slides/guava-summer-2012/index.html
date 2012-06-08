@@ -161,11 +161,11 @@ public void drive(double speed) {
     					<pre><code contenteditable="true" lang="Java" class="language-java">
 public Iterable<User> findNewFriends() {
     User us = getUser();
-    Set<User> ourFriends = us.friends;
+    Set&lt;User&gt; ourFriends = us.friends;
 
     // Find our friends of friends, collapse to a set, remove friends we already have.    
-    Predicate<User> potentialNewFriend = and(not(in(ourFriends)),not(equalsTo(us)));
-    FluentIterable<User> extendedNetwork = from(newHashSet(from(ourFriends).transformAndConcat(User.FriendsAccessor.instance)));
+    Predicate&lt;User&gt; potentialNewFriend = and(not(in(ourFriends)),not(equalsTo(us)));
+    FluentIterable&lt;User&gt; extendedNetwork = from(newHashSet(from(ourFriends).transformAndConcat(User.FriendsAccessor.instance)));
     
     // Remove friends we already have an ourselves.
     extendedNetwork = extendedNetwork.filter(potentialNewFriend);
@@ -173,12 +173,12 @@ public Iterable<User> findNewFriends() {
 }
 
 class User {
-	Set<User> friends;
+	Set&lt;User&gt; friends;
 	
-	enum FriendsAccessor implements Function<User,Iterable<User>> {
+	enum FriendsAccessor implements Function&lt;User,Iterable&lt;User&gt;&gt; {
 		instance;
 		@Override
-		public Iterable<User> apply(User input) {
+		public Iterable&lt;User&gt; apply(User input) {
 			return input.friends;
 		}
 	}
@@ -205,9 +205,9 @@ class User {
 					       These are often faster and more efficient than typical collections and JDK alternatives.
 					   </p>
 					   <pre><code contenteditable="true" lang="Java" class="language-java">
-public ImmutableList<Stuff> getStuff() {
-    Builder<Stuff> builder = ImmutableList.builder();
-    ImmutableList<Stuff> list = builder.add(stuff).add(otherStuff).add(someMoreStuff).build();
+public ImmutableList&lt;Stuff&gt; getStuff() {
+    Builder&lt;Stuff&gt; builder = ImmutableList.builder();
+    ImmutableList&lt;Stuff&gt; list = builder.add(stuff).add(otherStuff).add(someMoreStuff).build();
     return list;
 }
 					   </code></pre>
@@ -215,8 +215,8 @@ public ImmutableList<Stuff> getStuff() {
 					<section>
     					<h2>Using lists with ease</h2>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
-public List<Stuff> getStuff() {
-    List<Stuff> stuff = Lists.newArrayList();
+public List&lt;Stuff&gt; getStuff() {
+    List&lt;Stuff&gt; stuff = Lists.newArrayList();
     stuff = Lists.newArrayList(myStuff,yourStuff,theirStuff);
 }
     					</code></pre>
@@ -228,11 +228,11 @@ public List<Stuff> getStuff() {
     					<pre><code contenteditable="true" lang="Java" class="language-java">
 public void process() {
 
-   Table<User,Field,Data> table = getUserTable();
+   Table&lt;User,Field,Data&gt; table = getUserTable();
 
-   Table<Field,User,Data> transposed = Tables.transpose(table);
+   Table&lt;Field,User,Data&gt; transposed = Tables.transpose(table);
 
-   Map<User,Data> names = transposed.row(Field.first_name);
+   Map&lt;User,Data&gt; names = transposed.row(Field.first_name);
    
 }
 //////
@@ -240,7 +240,7 @@ enum Field {
     id,first_name,last_name,dob
 }
 
-abstract class Data<T> implements Supplier<T> {
+abstract class Data&lt;T&gt; implements Supplier&lt;T&gt; {
     final T data;
     abstract T get();
 }
@@ -271,14 +271,14 @@ public void doSomethingWithUserasynchronously() {
     ListeningScheduledExecutorService executor = MoreExecutors
     				.listeningDecorator(new ScheduledThreadPoolExecutor(4));
     
-    ListenableFuture<User> task = executor.submit(new Callable<User>() {
+    ListenableFuture&lt;User&gt; task = executor.submit(new Callable&lt;User&gt;() {
     	@Override
     	public User call() throws Exception {
     		return new User();
     	}
     });
     
-    Futures.addCallback(task, new FutureCallback<User>() {
+    Futures.addCallback(task, new FutureCallback&lt;User&gt;() {
     	@Override
     	public void onFailure(Throwable t) {
     		// log exception?
