@@ -38,7 +38,7 @@
 					<h3 class="inverted">A quick look at Google Guava (r12++).</h3>
 					<script>
 						// Delicously hacky. Look away.
-						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p><br />' );
 					</script>
 					
 					<p><small>You can navigate with <span class="key">→</span>, <span class="key">↓</span> or <span class="key">space</span>.</small>
@@ -158,14 +158,31 @@ public void drive(double speed) {
 					</section>
 					<section>
 						<h2>There is a better way!</h2>
+						<div>
 							<pre><code contenteditable="true" lang="Java" class="language-java">
-public void splitStrings() {
+public Iterable&lt;String&gt; splitStrings() {
 
 	String data = "frode, gudny, , schea, emily, håvard, rune";
-	Iterable<String> splits = Splitter.on(',').trimResults().omitEmptyStrings().split(data);
-
+	Iterable&glt;String&gt; splits = Splitter.on(',').trimResults().omitEmptyStrings().split(data);
+	return splits;
 }
 							</code></pre>
+				</div>
+
+						<div class="fragment">
+							<pre><code contenteditable="true" lang="Java" class="language-java">
+private static final Splitter splitter = Splitter.on(',').trimResults().omitEmptyStrings(); 
+
+public Iterable&lt;String&gt; splitStrings() {
+
+	String data = "frode, gudny, , schea, emily, håvard, rune";
+	Iterable&glt;String&gt; splits = splitter.split(data);
+	return splits;
+}
+							</code></pre>
+				</div>
+	
+							
 					</section>
 					<section>
 						<h2>Joiner!</h2>
@@ -249,7 +266,7 @@ enum UserNameAccessorFunction implements Function&lt;User,Name&gt; {
 					<section>
     					<h2>More FP</h2>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
-public Iterable<User> findNewFriends() {
+public Iterable&lt;User&gt; findNewFriends() {
     User us = getUser();
     Set&lt;User&gt; ourFriends = us.friends;
 
@@ -347,12 +364,12 @@ abstract class Data&lt;T&gt; implements Supplier&lt;T&gt; {
 					<section>
 						<h2>Files.class</h2>
 						<p>
-							Files
+							File utility class for performing typical operations
 						</p>
 						<pre><code contenteditable="true" lang="Java" class="language-java">
-public Multiset<String> countWords(File file) {
-	// Count distinct word occurrences in a file.
-	Multiset<String> wordOccurrences = HashMultiset.create(
+// Count distinct word occurrences in a file.
+public Multiset&lt;String&gt; countWords(File file) {
+	Multiset&lt;String&gt; wordOccurrences = HashMultiset.create(
 	  Splitter.on(CharMatcher.WHITESPACE)
 		.omitEmptyStrings()
 		.trimResults()
@@ -360,14 +377,15 @@ public Multiset<String> countWords(File file) {
 	return wordOccurrences;
 }
 						</code></pre>
+						
 						<pre><code contenteditable="true" lang="Java" class="language-java">
-public byte[] digest(File file) {
-	// SHA-1 a file.
-	byte[] digest = MessageDigest.getInstance("SHA-1").digest(Files.toByteArray(file));
-	return digest;
+// SHA-1 hash of a file.
+public byte[] digest(File file) throws IOException {
+    HashCode hash = Files.hash(file, Hashing.sha1());
+    byte[] digest = hash.asBytes();
+    return digest;
 }
 						</code></pre>
-						
 					</section>
 				</section>
 
