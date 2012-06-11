@@ -190,9 +190,19 @@ public Iterable&lt;String&gt; splitStrings() {
 							<pre><code contenteditable="true" lang="Java" class="language-java">
 public String listUsers(Set&lt;User&gt; users) {
 	// navn1, navn2, navn3							
-	return Joiner.on(" ,").join(Iterables.transform(users,User.NameAccessor.instance);
+	return Joiner.on(", ").join(Iterables.transform(users,User.NameAccessor.instance);
 }
 							</code></pre>
+							<p>or better yet...!
+							<pre><code contenteditable="true" lang="Java" class="language-java">
+// import static com.google.common.collect.Iterables.*;
+private static final Joiner joiner = Joiner.on(", ");
+public String listUsers(Set&lt;User&gt; users) {
+	// navn1, navn2, navn3							
+	return joiner.join(transform(users,User.NameAccessor.instance);
+}
+							</code></pre>
+							
 					</section>
 					<section>
 						<h2>CharMatcher</h2>
@@ -206,14 +216,13 @@ public String cleanPhoneNumber(String phonenumber) {
 	return phonenumbers.retainFrom(phonenumber); // String.replaceAll("[^\\d+-]","");
 }
 						</code></pre>
-						<div class="fragment">
 						<p>Or...
 						<pre><code contenteditable="true" lang="Java" class="language-java">
 private static final CharMatcher phonenumbers;
 static {
 	CharMatcher tmp = CharMatcher.DIGIT; // [\\d]
 	tmp = tmp.or(CharMatcher.is('-')) // [-]
-	tmp = tmpor(CharMatcher.is('+')); // [+]
+	tmp = tmp.or(CharMatcher.is('+')); // [+]
 	phonenumber = tmp;
 }						
 
@@ -222,7 +231,6 @@ public String cleanPhoneNumber(String phonenumber) {
 }
 						</code></pre>
 						</p>
-						</div>
 					</section>
 					<section>
 						<h2>Optional</h2>
@@ -281,7 +289,7 @@ public Iterable&lt;User&gt; findNewFriends() {
 
 class User {
 	Set&lt;User&gt; friends;
-	
+	// Accessor pattern
 	enum FriendsAccessor implements Function&lt;User,Iterable&lt;User&gt;&gt; {
 		instance;
 		@Override
@@ -304,6 +312,26 @@ class User {
 					<section data-state="blue">
 						<h1>collect</h1>
 						<h2><i>Lists, Maps, Sets and other collections</i></h2>
+					</section>
+					<section>
+					   <h2>Ordering</h2>
+					   <p><small>The proper way to sort</small></p>
+					   <pre><code contenteditable="true" lang="Java" class="language-java">
+public List&lt;User&gt; sortedCopy(Iterable&lt;User&gt; users) {
+    return Ordering.natural().onResultOf(User.SurnameAccessor.instance).compound(Ordering.natural().onResultOf(User.FirstnameAccessor.instance)).compound(Ordering.natural.onResultOf(User.IDAccessor.instance)).sortedCopy(users);
+}
+					   </code></pre>
+					   <p>Or...</p>
+					   <pre><code contenteditable="true" lang="Java" class="language-java">
+private static Ordering&lt;User&gt; firstnameOrdering = Ordering.natural().onResultOf(User.FirstnameAccessor.instance);
+private static Ordering&lt;User&gt; surnameOrdering = Ordering.natural().onResultOf(User.SurnameAccessor.instance);
+private static Ordering&lt;User&gt; userIDOrdering = Ordering.natural().onResultOf(User.IDAccessor.instance);
+private static Ordering&lt;User&gt; composedOrdering = firstnameOrdering.compound(surnameOrdering).compound(userIDOrdering);
+
+public List&lt;User&gt; sortedCopy(Iterable&lt;User&gt; users) {
+    return composedOrdering.sortedCopy(users);
+}
+					   </code></pre>
 					</section>
 					<section>
 					   <h2>Immutable types</h2>
