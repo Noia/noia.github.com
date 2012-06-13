@@ -266,6 +266,26 @@ public SpecialObject doThatThing() {
 					</section>
 					<section>
 						<h2>Functional Paradigms!</h2>
+						<p>
+						  There are two main interfaces upon which most of Guavas FP is based:
+						  <ul>
+    						  <li>Predicate&lt;I&gt;#apply(I): boolean <br />
+        						  <small>Is../Has../Can../If.. etc.</small>
+    						  </li>
+    						  <li>Function&lt;I,O&gt;#apply(I): O<br />
+    						      <small>Turn I into O</small>
+    						  </li><br />
+    						  <small style="color:#CF6060">Caveat! One important code-smell!</small>
+    						  <pre><code contenteditable="true" lang="java" class="language-java" style="border:1px solid #CF6060">
+new Function&lt;I,Object&gt;() {
+    public Object apply(I in) {
+        return new Object();
+        //     ^- Code smell!
+    }
+}
+						</code></pre>
+						  </ul>
+						</p>
 					</section>
 					<section>
 						<h2>Predicates</h2>
@@ -388,13 +408,29 @@ public class OurClass {
 				
 					   </section>
 					<section>
-    					<h2>Using lists with ease</h2>
+    					<h2>Using collections with ease</h2>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
-public List&lt;Stuff&gt; getStuff() {
+public void bananaMethod() {
     List&lt;Stuff&gt; stuff = Lists.newArrayList();
     stuff = Lists.newArrayList(myStuff,yourStuff,theirStuff);
+    
+    Map&lt;Long,User&gt; userMap = Maps.newHashMap();
+    // Maps.asMap(Iterable,Function) hopefully coming in Guava r13!
+    
+    Set&lt;Stuff&gt; myStuff = Sets.newHashSet();
+    Set&lt;Stuff&gt; yourStuff = Sets.newHashSet();
+    Sets.union(myStuff,yourStuff); 
+    // All of our stuff
+    
+    Sets.difference(myStuff,yourStuff); 
+    // Stuff that I have that you don't
+    
+    Sets.intersection(myStuff,yourStuff); 
+    // Stuff that we both have
 }
     					</code></pre>
+    					
+    					
 					</section>
 					<section>
     					<h2>Complex collections</h2>
@@ -422,6 +458,32 @@ abstract class Data&lt;T&gt; implements Supplier&lt;T&gt; {
 
     					</code></pre>
 					</section>
+					<section>
+    					<h2>Complex collections</h2>
+    					<h3> MultiSet!</h3>
+    					<p><i><small>A set that can count, not Map&lt;T,Integer&gt;, but almost.</small></i></p>
+    					<pre><code contenteditable="true" lang="Java" class="language-java">
+public void multiSet(Collection&lt;String&gt; words) {
+    Multiset&lt;String&gt; wordsMultiset = HashMultiset.create();
+    wordsMultiset.addAll(words);
+    int cares = wordsMultiset.count("Honeybadger");
+      
+}
+    					</code></pre>
+					</section>
+					<section>
+    					<h2>Complex collections</h2>
+    					<h3> MultiMap!</h3>
+    					<p><i><small>A map that .</small></i></p>
+    					<pre><code contenteditable="true" lang="Java" class="language-java">
+public void multiSet(Collection&lt;String&gt; words) {
+    Multiset&lt;String&gt; wordsMultiset = HashMultiset.create();
+    wordsMultiset.addAll(words);
+    int cares = wordsMultiset.count("Honeybadger");
+      
+}
+    					</code></pre>
+					</section>
 				</section>
 				
 				<section>
@@ -438,10 +500,7 @@ abstract class Data&lt;T&gt; implements Supplier&lt;T&gt; {
 // Count distinct word occurrences in a file.
 public Multiset&lt;String&gt; countWords(File file) {
 	Multiset&lt;String&gt; wordOccurrences = HashMultiset.create(
-	  Splitter.on(CharMatcher.WHITESPACE)
-		.omitEmptyStrings()
-		.trimResults()
-		.split(Files.toString(file, Charsets.UTF_16)));
+	  splitter.split(Files.toString(file, Charsets.UTF_16)));
 	return wordOccurrences;
 }
 						</code></pre>
@@ -449,7 +508,7 @@ public Multiset&lt;String&gt; countWords(File file) {
 						<pre><code contenteditable="true" lang="Java" class="language-java">
 // SHA-1 hash of a file.
 public byte[] digest(File file) throws IOException {
-    HashCode hash = Files.hash(file, Hashing.sha1());
+    HashCode hash = Files.hash(file, Hashing.sha1()); // Also supports other algos!
     byte[] digest = hash.asBytes();
     return digest;
 }
