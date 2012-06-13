@@ -216,6 +216,12 @@ body {
 	vertical-align: top;
 }
 
+.reveal big {
+	font-size: 140%;
+	line-height: 1.2em;
+	vertical-align: top;
+}
+
 .reveal q {	
 	font-style: italic;
 }

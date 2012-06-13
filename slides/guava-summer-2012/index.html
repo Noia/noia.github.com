@@ -176,7 +176,7 @@ private static final Splitter splitter = Splitter.on(',').trimResults().omitEmpt
 public Iterable&lt;String&gt; splitStrings() {
 
 	String data = "frode, gudny, , schea, emily, håvard, rune";
-	Iterable&glt;String&gt; splits = splitter.split(data);
+	Iterable&gt;String&gt; splits = splitter.split(data);
 	return splits;
 }
 							</code></pre>
@@ -234,9 +234,35 @@ public String cleanPhoneNumber(String phonenumber) {
 					</section>
 					<section>
 						<h2>Optional</h2>
+						<p><small>
+							Nulls should be avoided, in fact if it weren't for array de-registration they shouldn't exist.
+						</small></p>
+						<pre><code contenteditable="true" lang="java" class="language-java">
+public SpecialObject doThatThing() {
+    SpecialObject obj = magicService.getSpecialObject();
+    if (obj == null) {
+     /* ... */
+    }
+    return obj;
+}
+						</code></pre>
+					
+						<div class="fragment">
 						<p>
-							Nulls should be avoided, infact if it weren't for array deregistration they shouldn't exist.
+						  <small>What is null?! Error? Missing? Nothing to report? Gone to Lunch?!</small>
+						  <br />
+						  <big>Be expressive</big>  
 						</p>
+						<pre><code contenteditable="true" lang="java" class="language-java">
+public SpecialObject doThatThing() {
+    Optional&lt;SpecialObject&gt; obj = magicService.getSpecialObject();
+    if (obj.isAbsent()) {
+        return new SpecialObject();
+    }
+    return obj.get();
+}
+						</code></pre>
+						</div>						
 					</section>
 					<section>
 						<h2>Functional Paradigms!</h2>
@@ -452,6 +478,33 @@ public void doSomethingWithUserasynchronously() {
 }
 					   </code></pre>
 					</section>
+					<section>
+    					<h2>ListenableFuture</h2>
+					   <pre><code contenteditable="true" lang="Java" class="language-java">
+public ListenableFuture&lt;DataGraph&gt; longChainOfEvents(final InputParameters params) {
+    ListenableFuture&lt;RawGraph&gt; step1 = listenableExecutor.submit(new Callable&lt;RawGraph&gt;(){
+        public RawGraph call() {
+            return database.aquire(params); // Some super slow graph db query
+        }
+    });
+    
+    ListenableFuture&lt;ReducedGraph&gt; step2 = Futures.transform(step1,new AsyncFunction&lt;RawGraph,ReducedGraph&gt;(){
+        public ListernableFuture&lt;ReducedGraph&gt; apply(RawGraph input) {
+            return Futures.immediateFuture(pruningService.prune(input)); // Some slow pruning process
+        }
+    });
+    
+    ListenableFuture&lt;DataGraph&gt; step3 = Futures.transform(step2,new AsyncFunction&lt;ReducedGraph,DataGraph&gt;(){
+        public ListernableFuture&lt;DataGraph&gt; apply(ReducedGraph input) {
+            return Futures.immediateFuture(dataMiningService.mine(input)); // Some slow data mining process
+        }
+    });
+    
+    return step3;
+    
+}
+					   </code></pre>
+					</section>
 				</section>
 				<section>
 				    <h1>Things not covered here</h1>
@@ -485,7 +538,23 @@ public void doSomethingWithUserasynchronously() {
     				    </ul>
 				    </p>
 				</section>
-				
+				<section>
+    				<h1>Remember</h1>
+    				<p>
+    				Some ideas to take away from this presentation
+    				    <ul>
+    				        <li class="fragment">User Iterable in your signatures<br />
+        				        <small>Reduces API obligations, allows for more agile code. Iterable &gt; List/Set! </small>
+    				        </li>
+    				        <li  class="fragment">Use FP when its smart to do so!<br />
+        				        <small>FP can easily get cluttered if you take big leaps. Start small!</small>
+    				        </li>
+    				        <li class="fragment">Static imports make things less ugly<br />
+        				        <small>Eclipse: <em class="key">Alt</em> + <em class="key">Shift</em> + <em class="key">M</em></small>
+    				        </li>
+    				    </ul>
+    				</p>
+				</section>
 				<section>
 					<h1>THE END</h1>
 					<h3 class="inverted">BY Emily Soldal</h3>
