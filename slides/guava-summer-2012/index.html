@@ -372,7 +372,21 @@ public ImmutableList&lt;Stuff&gt; getStuff() {
     return list;
 }
 					   </code></pre>
-					</section>
+					   <div class="fragment">
+    					   <p>
+    					   Very useful for defensive programming and API boundaries
+    					   </p>
+        					<pre><code contenteditable="true" lang="Java" class="language-java">
+public class OurClass {
+    Set&lt;Data&gt; data;
+    public void setData(Set&lt;Data&gt; data) {
+        this.data = ImmutableSet.copyOf(data); // Defensive programming
+    }
+}            					
+        					</code></pre>   
+					   </div>
+				
+					   </section>
 					<section>
     					<h2>Using lists with ease</h2>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
@@ -480,23 +494,27 @@ public void doSomethingWithUserasynchronously() {
 					</section>
 					<section>
     					<h2>ListenableFuture</h2>
+    					<p>Step-by-step discrete processing</p>
 					   <pre><code contenteditable="true" lang="Java" class="language-java">
 public ListenableFuture&lt;DataGraph&gt; longChainOfEvents(final InputParameters params) {
     ListenableFuture&lt;RawGraph&gt; step1 = listenableExecutor.submit(new Callable&lt;RawGraph&gt;(){
         public RawGraph call() {
-            return database.aquire(params); // Some super slow graph db query
+             // Some super slow graph db query 
+            return database.aquire(params);
         }
     });
     
     ListenableFuture&lt;ReducedGraph&gt; step2 = Futures.transform(step1,new AsyncFunction&lt;RawGraph,ReducedGraph&gt;(){
-        public ListernableFuture&lt;ReducedGraph&gt; apply(RawGraph input) {
-            return Futures.immediateFuture(pruningService.prune(input)); // Some slow pruning process
+        public ListenableFuture&lt;ReducedGraph&gt; apply(RawGraph input) {
+            // Some slow pruning process
+            return Futures.immediateFuture(pruningService.prune(input));
         }
     });
     
     ListenableFuture&lt;DataGraph&gt; step3 = Futures.transform(step2,new AsyncFunction&lt;ReducedGraph,DataGraph&gt;(){
-        public ListernableFuture&lt;DataGraph&gt; apply(ReducedGraph input) {
-            return Futures.immediateFuture(dataMiningService.mine(input)); // Some slow data mining process
+        public ListenableFuture&lt;DataGraph&gt; apply(ReducedGraph input) {
+            // Some slow data mining process
+            return Futures.immediateFuture(dataMiningService.mine(input)); 
         }
     });
     
