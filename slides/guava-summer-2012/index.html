@@ -507,18 +507,16 @@ public void multiMap() {
 					<section>
     					<h2>Complex collections</h2>
     					<h3>BiMap!</h3>
-    					<p><i><small>Similar to Map&lt;K,Set&lt;V&gt;&gt;, but not quite!</small></i></p>
+    					<p><i><small>A map of A-&gt;B but also B-&gt;A, enforces contractual obligations both ways!</small></i></p>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
-public void multiMap() {
-    Multimap&lt;Person,Person&gt; persons = getPeopleMap();
-    Set&lt;People&gt; related = persons.get(getCurrentUser());
+public void biMap() {
+    BiMap&lt;Person,Pet&gt; peopleAndTheirPets = getPetMap();
     
-    // Multimap#get(K) returns a set view of backing content.
-    related.clear();
-    related.add(new Person("Chuck","Norris"));
-
-    persons.put(getCurrentUser(),new Person("Alice","Liddle"));
-      
+    Pet ourPet = peopleAndTheirPets.get(currentUser());
+    
+    BiMap&lt;Pet,Person&gt; inverse = peopleAndTheirPets.inverse();
+    
+    assertTrue(currentUser() == inverse.get(ourPet));
 }
     					</code></pre>
 					</section>
