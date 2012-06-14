@@ -429,7 +429,17 @@ public void bananaMethod() {
     // Stuff that we both have
 }
     					</code></pre>
-    					
+    					<p>
+        					Look for plurals.<br />
+        					<small>
+            					<ul>
+                					<li>Lists.class</li>
+                					<li>Sets.class</li>
+                					<li>Maps.class</li>
+                					<li>Queues.class</li>
+            					</ul>
+        					</small>
+    					</p>
     					
 					</section>
 					<section>
@@ -474,12 +484,35 @@ public void multiSet(Collection&lt;String&gt; words) {
 					<section>
     					<h2>Complex collections</h2>
     					<h3> MultiMap!</h3>
-    					<p><i><small>A map that .</small></i></p>
+    					<p><i><small>Similar to Map&lt;K,Set&lt;V&gt;&gt;, but not quite!</small></i></p>
     					<pre><code contenteditable="true" lang="Java" class="language-java">
-public void multiSet(Collection&lt;String&gt; words) {
-    Multiset&lt;String&gt; wordsMultiset = HashMultiset.create();
-    wordsMultiset.addAll(words);
-    int cares = wordsMultiset.count("Honeybadger");
+public void multiMap() {
+    Multimap&lt;Person,Person&gt; persons = getPeopleMap();
+    Set&lt;People&gt; related = persons.get(getCurrentUser());
+    
+    // Multimap#get(K) returns a set view of backing content.
+    related.clear();
+    related.add(new Person("Chuck","Norris"));
+
+    persons.put(getCurrentUser(),new Person("Alice","Liddle"));
+      
+}
+    					</code></pre>
+					</section> 
+					<section>
+    					<h2>Complex collections</h2>
+    					<h3>BiMap!</h3>
+    					<p><i><small>Similar to Map&lt;K,Set&lt;V&gt;&gt;, but not quite!</small></i></p>
+    					<pre><code contenteditable="true" lang="Java" class="language-java">
+public void multiMap() {
+    Multimap&lt;Person,Person&gt; persons = getPeopleMap();
+    Set&lt;People&gt; related = persons.get(getCurrentUser());
+    
+    // Multimap#get(K) returns a set view of backing content.
+    related.clear();
+    related.add(new Person("Chuck","Norris"));
+
+    persons.put(getCurrentUser(),new Person("Alice","Liddle"));
       
 }
     					</code></pre>
