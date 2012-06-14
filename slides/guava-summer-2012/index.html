@@ -8,6 +8,7 @@
 
 		<meta name="description" content="A brief look at Google Guava">
 		<meta name="author" content="Emily Soldal">
+		
 		<!-- No caching while I dev! -->
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Expires" content="-1">
@@ -170,6 +171,9 @@ public Iterable&lt;String&gt; splitStrings() {
 				</div>
 
 						<div class="fragment">
+						<p>
+						Or...
+						</p>
 							<pre><code contenteditable="true" lang="Java" class="language-java">
 private static final Splitter splitter = Splitter.on(',').trimResults().omitEmptyStrings(); 
 
@@ -315,6 +319,7 @@ enum UserNameAccessorFunction implements Function&lt;User,Name&gt; {
 	}
 }
 						</code></pre>
+						<p>Functions are everywhere and are extremely useful! But try to make them <u>stateless</u> and <u>singletons</u>, accessor patterns are fantastic for this! </p>
 					</section>
 					
 					<section>
@@ -661,6 +666,9 @@ public ListenableFuture&lt;DataGraph&gt; longChainOfEvents(final InputParameters
     				        </li>
     				        <li class="fragment">Static imports make things less ugly<br />
         				        <small>Eclipse: <em class="key">Alt</em> + <em class="key">Shift</em> + <em class="key">M</em></small>
+    				        </li>
+    				        <li class="fragment">Use Views whenever possible but be defensive<br />
+        				        <small>Views have a smaller footprint, but if you loop through the view more than once or twice, make a copy.</small>
     				        </li>
     				    </ul>
     				</p>
