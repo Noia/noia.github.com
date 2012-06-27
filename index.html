@@ -151,8 +151,8 @@
 			$.each(bins,function(index, value) {
 				s += createRow(value);
 			});
-			$('#repoload').remove();
-			$('.tophero').append(s);
+			$('#repoload').replaceWith(s);
+			
 			$('time.timeago').timeago();
 		});
 	});
