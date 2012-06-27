@@ -63,8 +63,8 @@
               <li class="nav-header">Slides</li>
               <li><a href="slides/guava-summer-2012">Guava Slides - Summer 2012</a></li>
               <li class="nav-header">Things I like</li>
-              <li><a href="#">...</a></li>
-              <li><a href="#">...</a></li>
+              <li><a href="#">Guava</a></li>
+              <li><a href="#">Eclipse</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -75,7 +75,7 @@
             <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
           </div>
 		  <div class="spinner" id="repoload">
-			Loading repositories...
+			<h4>Loading repositories...</h4>
 		  </div>
         </div><!--/span-->
 		
@@ -83,7 +83,6 @@
 
       </div><!--/row-->
 	 <div class="row">
-	 	
 		<div class="span9 offset3" id="contact">
 	  	 	<div class="hero-unit">
 		  		<h1>Contact</h1>
@@ -99,6 +98,7 @@
     <hr>
 
     <footer>
+	<img src="http://eclipse.org/donate/images/friendslogo200.jpg">
       <p>&copy; Derp 2012</p>
     </footer>
     <!-- Le javascript
@@ -149,7 +149,7 @@
 			$.each(bins,function(index, value) {
 				s += createRow(value);
 			});
-			$('#repoload').hide();
+			$('#repoload').remove();
 			$('.supercontainer').append(s);
 			$('time.timeago').timeago();
 		});
